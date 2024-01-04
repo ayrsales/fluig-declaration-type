@@ -123,5 +123,34 @@ declare namespace ServiceManager {
      * var service = ServiceManager.getService("ems2_v10");
      * var serviceHelper = service.getBean();
      */
-    declare function getService(serviceId: string): object;
-};
+    function getService(serviceId: string): object;
+
+    /**
+     * Instancia o serviço especificado
+     *
+     * Normalmente utilizado para pegar o serviceHelper do serviço.
+     *
+     * @example
+     * var service = ServiceManager.getService("ems2_v10");
+     * var serviceHelper = service.getBean();
+     */
+    function getServiceInstance(serviceId: string): ServiceInstantiate;
+
+    // declare function getServiceInstance(serviceId: string): object;
+
+}
+
+
+declare class ServiceInstantiate {
+    instantiate(serviceId: string): serviceLocator;
+    getBean(): serviceHelper;
+
+}
+
+declare class serviceLocator {
+    getRMIwsDataServer(): object;
+}
+
+declare class serviceHelper {
+    getBasicAuthenticatedClient(serviceId: object, classe: string, usuario: string, senha: string): object;
+}
